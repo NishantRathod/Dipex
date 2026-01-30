@@ -19,7 +19,6 @@ class TestModuleImports(unittest.TestCase):
         """Test that face recognition module can be imported."""
         try:
             import face_recognition_module
-            self.assertTrue(True)
         except ImportError as e:
             self.fail(f"Failed to import face_recognition_module: {e}")
     
@@ -27,7 +26,6 @@ class TestModuleImports(unittest.TestCase):
         """Test that deltoid detection module can be imported."""
         try:
             import deltoid_detection_module
-            self.assertTrue(True)
         except ImportError as e:
             self.fail(f"Failed to import deltoid_detection_module: {e}")
     
@@ -35,7 +33,6 @@ class TestModuleImports(unittest.TestCase):
         """Test that main dipex module can be imported."""
         try:
             import dipex
-            self.assertTrue(True)
         except ImportError as e:
             self.fail(f"Failed to import dipex: {e}")
 

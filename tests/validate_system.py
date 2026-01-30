@@ -77,29 +77,29 @@ def main():
     
     # Check directories
     print("Checking directories...")
-    all_checks_passed &= check_directory_exists(os.path.join(base_dir, 'src'), "Source directory")
-    all_checks_passed &= check_directory_exists(os.path.join(base_dir, 'examples'), "Examples directory")
-    all_checks_passed &= check_directory_exists(os.path.join(base_dir, 'tests'), "Tests directory")
+    all_checks_passed = all_checks_passed and check_directory_exists(os.path.join(base_dir, 'src'), "Source directory")
+    all_checks_passed = all_checks_passed and check_directory_exists(os.path.join(base_dir, 'examples'), "Examples directory")
+    all_checks_passed = all_checks_passed and check_directory_exists(os.path.join(base_dir, 'tests'), "Tests directory")
     print()
     
     # Check required files
     print("Checking required files...")
-    all_checks_passed &= check_file_exists(os.path.join(base_dir, 'README.md'), "README")
-    all_checks_passed &= check_file_exists(os.path.join(base_dir, 'requirements.txt'), "Requirements")
-    all_checks_passed &= check_file_exists(os.path.join(base_dir, '.gitignore'), "Git ignore")
+    all_checks_passed = all_checks_passed and check_file_exists(os.path.join(base_dir, 'README.md'), "README")
+    all_checks_passed = all_checks_passed and check_file_exists(os.path.join(base_dir, 'requirements.txt'), "Requirements")
+    all_checks_passed = all_checks_passed and check_file_exists(os.path.join(base_dir, '.gitignore'), "Git ignore")
     print()
     
     # Check source files
     print("Checking source files...")
-    all_checks_passed &= check_file_exists(
+    all_checks_passed = all_checks_passed and check_file_exists(
         os.path.join(base_dir, 'src', 'face_recognition_module.py'),
         "Face recognition module"
     )
-    all_checks_passed &= check_file_exists(
+    all_checks_passed = all_checks_passed and check_file_exists(
         os.path.join(base_dir, 'src', 'deltoid_detection_module.py'),
         "Deltoid detection module"
     )
-    all_checks_passed &= check_file_exists(
+    all_checks_passed = all_checks_passed and check_file_exists(
         os.path.join(base_dir, 'src', 'dipex.py'),
         "Main application"
     )
@@ -107,15 +107,15 @@ def main():
     
     # Check example files
     print("Checking example files...")
-    all_checks_passed &= check_file_exists(
+    all_checks_passed = all_checks_passed and check_file_exists(
         os.path.join(base_dir, 'examples', 'face_recognition_example.py'),
         "Face recognition example"
     )
-    all_checks_passed &= check_file_exists(
+    all_checks_passed = all_checks_passed and check_file_exists(
         os.path.join(base_dir, 'examples', 'deltoid_detection_example.py'),
         "Deltoid detection example"
     )
-    all_checks_passed &= check_file_exists(
+    all_checks_passed = all_checks_passed and check_file_exists(
         os.path.join(base_dir, 'examples', 'combined_example.py'),
         "Combined example"
     )
@@ -123,17 +123,17 @@ def main():
     
     # Validate modules
     print("Validating module structure...")
-    all_checks_passed &= validate_module(
+    all_checks_passed = all_checks_passed and validate_module(
         os.path.join(base_dir, 'src', 'face_recognition_module.py'),
         'FaceRecognizer',
         ['load_known_faces', 'add_face', 'recognize_faces', 'draw_results']
     )
-    all_checks_passed &= validate_module(
+    all_checks_passed = all_checks_passed and validate_module(
         os.path.join(base_dir, 'src', 'deltoid_detection_module.py'),
         'DeltoidDetector',
         ['detect_pose', 'get_deltoid_regions', 'draw_deltoid_regions', 'close']
     )
-    all_checks_passed &= validate_module(
+    all_checks_passed = all_checks_passed and validate_module(
         os.path.join(base_dir, 'src', 'dipex.py'),
         'DipexSystem',
         ['process_image', 'process_video', 'close']

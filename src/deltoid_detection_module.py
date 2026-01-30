@@ -87,6 +87,7 @@ class DeltoidDetector:
         left_shoulder = landmarks[self.mp_pose.PoseLandmark.LEFT_SHOULDER.value]
         left_elbow = landmarks[self.mp_pose.PoseLandmark.LEFT_ELBOW.value]
         
+        # Visibility threshold of 0.5 means we need at least 50% confidence in landmark detection
         if left_shoulder.visibility > 0.5 and left_elbow.visibility > 0.5:
             deltoid_info['left'] = {
                 'shoulder': (int(left_shoulder.x * w), int(left_shoulder.y * h)),
@@ -98,6 +99,7 @@ class DeltoidDetector:
         right_shoulder = landmarks[self.mp_pose.PoseLandmark.RIGHT_SHOULDER.value]
         right_elbow = landmarks[self.mp_pose.PoseLandmark.RIGHT_ELBOW.value]
         
+        # Visibility threshold of 0.5 means we need at least 50% confidence in landmark detection
         if right_shoulder.visibility > 0.5 and right_elbow.visibility > 0.5:
             deltoid_info['right'] = {
                 'shoulder': (int(right_shoulder.x * w), int(right_shoulder.y * h)),
@@ -147,6 +149,7 @@ class DeltoidDetector:
                 
                 # Draw circular region for left deltoid
                 cv2.circle(image_copy, (center_x, center_y), radius, (255, 0, 0), 3)
+                # Label positioning: 40 pixels left of center, 10 pixels above the circle
                 cv2.putText(image_copy, "L.Deltoid", (center_x - 40, center_y - radius - 10),
                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
             
@@ -162,6 +165,7 @@ class DeltoidDetector:
                 
                 # Draw circular region for right deltoid
                 cv2.circle(image_copy, (center_x, center_y), radius, (255, 0, 0), 3)
+                # Label positioning: 40 pixels left of center, 10 pixels above the circle
                 cv2.putText(image_copy, "R.Deltoid", (center_x - 40, center_y - radius - 10),
                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
         

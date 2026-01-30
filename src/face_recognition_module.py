@@ -41,7 +41,8 @@ class FaceRecognizer:
             return 0
         
         count = 0
-        for image_file in faces_dir.glob("*.jpg"):
+        # Support multiple image formats
+        for image_file in list(faces_dir.glob("*.jpg")) + list(faces_dir.glob("*.jpeg")) + list(faces_dir.glob("*.png")):
             # Load image
             image = face_recognition.load_image_file(str(image_file))
             
@@ -127,6 +128,7 @@ class FaceRecognizer:
             cv2.rectangle(image_copy, (left, top), (right, bottom), (0, 255, 0), 2)
             
             # Draw label below face
+            # Label height: 35 pixels, text padding: 6 pixels
             cv2.rectangle(image_copy, (left, bottom - 35), (right, bottom), (0, 255, 0), cv2.FILLED)
             font = cv2.FONT_HERSHEY_DUPLEX
             cv2.putText(image_copy, name, (left + 6, bottom - 6), font, 0.6, (255, 255, 255), 1)
